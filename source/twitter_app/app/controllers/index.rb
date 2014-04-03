@@ -27,7 +27,7 @@ post '/users/login' do
 end
 
 post '/users/new' do
-  @user = User.new(params[:email])
+  @user = User.new(email: params[:email])
   @user.password = params[:password]
   @user.save!
   redirect to '/'
@@ -38,6 +38,6 @@ get '/logout' do
   redirect to '/'
 end
 
-post '/tweets/new'
+post '/tweets/new' do
   Tweet.create(params)
 end
