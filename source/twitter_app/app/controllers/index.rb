@@ -4,6 +4,7 @@ get '/' do
     erb :user_page #logged in home page
   else
     erb :index #login/createaccount page
+  end
 end
 
 get '/users/:id' do
