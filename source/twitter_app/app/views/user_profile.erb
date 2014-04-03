@@ -1,0 +1,26 @@
+<div class="container">
+  <h1><%= @user.name %></h1>
+  <br>
+  <%= @user.user_name %>
+  <hr>
+
+<div id="create_tweet">
+  <form>
+    <textarea rows="5" cols="10" name="message" placeholder="Compose Tweet!"required></textarea><br>
+    <input type="submit" value="Tweet">
+  </form>
+</div>
+<h2>My Tweets</h2>
+<div class="container-sml">
+  <% @user.tweets.sort_by{ |tweet| tweet.created_at}.each do |tweet| %>
+    <section class="tweet">
+      <%= tweet.user.user_name %>: <br>
+      <%= tweet.message %><br>
+      <%= tweet.created_at %>
+    </section>
+
+  <% end %>  <!-- tweets of users Main User is following -->
+</div>
+
+
+</div>

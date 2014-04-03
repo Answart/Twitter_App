@@ -5,25 +5,9 @@
   <hr>
 
 <!-- Log in user-->
-<h2>Log in</h2>
-  <div class="container-sml">
-    <form action="login" method="post">
-      <input type="email" name="email" placeholder="example@email.com"><br>
-      <input type="password" name="password" placeholder="password"><br>
-      <input type="submit" value="Login">
-    </form>
-  </div>
+<%= erb :_login %>
 
 <!-- Create user -->
-<h2>Become a member</h2>
-  <div class="container-sml">
-    <form action="login" method="post">
-      <input type="text" name="name" placeholder="Full name">
-      <input type="text" name="user_name" placeholder="username">
-      <input type="email" name="email" placeholder="example@email.com"><br>
-      <input type="password" name="password" placeholder="password"><br>
-      <input type="submit" value="Register">
-    </form>
-  </div>
+<%= erb :_register %>
 
 </div>
