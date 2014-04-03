@@ -1,8 +1,22 @@
+body {
+  max-width: 960px;
+  background-color: grey;
+}
+
 .container {
   margin: 20px auto;
-  width: 600px;
+  background-color: white;
+  width: 90%;
   padding: 0px 20px 20px 20px;
-  border: 1px dotted black;
+  border: 0px dotted black;
+}
+
+
+.container-sml {
+  margin: 20px auto;
+  width: 90%;
+  padding: 0px 20px 20px 20px;
+  border: 1px solid black;
 }
 
 th {
