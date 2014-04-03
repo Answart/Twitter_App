@@ -15,8 +15,6 @@ end
 
 post '/users/login' do
   @user = User.find_by_email(params[:email])  #add unique constrain to migration
-  p "_______________________________________"
-  p @user
   if @user
      if @user.password == params[:password]
       session[:user_id] = @user.id
