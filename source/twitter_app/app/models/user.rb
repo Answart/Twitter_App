@@ -21,11 +21,11 @@ class User < ActiveRecord::Base
     end
   end
 
-  def followers
-    @followers = Relationship.where('followed_id = ?' self.id)
-  end
+  # def followers
+  #   @followers = Relationship.where('followed_id = ?' self.id)
+  # end
 
-  def following
-    @following = Relationship.where('follower_id = ?' self.id)
-  end
+  # def following
+  #   @following = Relationship.where('follower_id = ?' self.id)
+  # end
 end
