@@ -32,3 +32,7 @@ post '/users/new' do
   User.create(params)
   redirect to '/'
 end
+
+get '/logout' do
+  session[:user_id] = nil
+end
