@@ -1,5 +1,5 @@
 helpers do
-  def em(text)
-    "<em>#{text}</em>"
+  def loggedin?
+    !!sessions[:user_id]
   end
 end
