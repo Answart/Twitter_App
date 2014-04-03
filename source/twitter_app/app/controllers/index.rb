@@ -4,22 +4,26 @@ get '/' do
     erb :user_page #logged in home page
   else
     erb :index #login/createaccount page
+  end
 end
 
-get '/user/:id' do
+get '/users/:id' do
   @user = User.find(params[:id])
   erb :user_profile
 end
 
-post 'user/login' do
+post 'users/login' do
   @user = User.find_by_email(email: params[:email])  #add unique constrain to migration
   if @user
      if @user.password == params[:password]
-      session[:id] = @user.id
+      session[:user_id] = @user.id
       erb :user_profile
     end
   end
   redirect to '/'
 end
 
-
+post '/users/new' do
+  User.create(params)
+  redirect to '/'
+end
