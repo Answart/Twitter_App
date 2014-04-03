@@ -4,12 +4,7 @@
   <%= @user.user_name %>
   <hr>
 
-<div id="create_tweet">
-  <form action="/tweets/new" method="post">
-    <textarea rows="5" cols="10" name="message" placeholder="Compose Tweet!"required></textarea><br>
-    <input type="submit" value="Tweet">
-  </form>
-</div>
+<%= erb :_create_tweet %>
 <h2>Tweets from People I follow</h2>
 <div class="container-sml">
   <% @user.tweets.sort_by{ |tweet| tweet.created_at}.each do |tweet| %>
