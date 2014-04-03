@@ -27,7 +27,9 @@ post '/users/login' do
 end
 
 post '/users/new' do
-  User.create(params)
+  @user = User.new(params[:email])
+  @user.password = params[:password]
+  @user.save!
   redirect to '/'
 end
 
