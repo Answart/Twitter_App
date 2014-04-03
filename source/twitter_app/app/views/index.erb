@@ -1,23 +1,26 @@
 <div class="container">
-  <h1>Welcome to Sinatra!</h1>
-  <p>Hello, <%= em("world!") %></p>
+  <h1>Welcome to Lil Twitta!</h1>
+  <br>
+  <hr>
 
-  <table>
-    <tr>
-      <th>File Description</th>
-      <th>File Location</th>
-    </tr>
-    <tr>
-      <td>This view file</td>
-      <td><code><%= __FILE__.gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-    <tr>
-      <td>The layout file</td>
-      <td><code><%= File.expand_path('../layout.erb', __FILE__).gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-    <tr>
-      <td>The current controller</td>
-      <td><code><%= File.expand_path('../../controllers/index.rb', __FILE__).gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-  </table>
+<!-- Log in user-->
+  <div class="container-sml">
+    <form action="login" method="post">
+      <input type="email" name="email" placeholder="example@email.com"><br>
+      <input type="password" name="password" placeholder="password"><br>
+      <input type="submit" value="Login">
+    </form>
+  </div>
+
+<!-- Create user -->
+  <div class="container-sml">
+    <form action="login" method="post">
+      <input type="text" name="name" placeholder="Full name">
+      <input type="text" name="user_name" placeholder="username">
+      <input type="email" name="email" placeholder="example@email.com"><br>
+      <input type="password" name="password" placeholder="password"><br>
+      <input type="submit" value="Register">
+    </form>
+  </div>
+
 </div>
