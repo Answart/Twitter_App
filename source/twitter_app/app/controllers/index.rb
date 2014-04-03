@@ -37,3 +37,7 @@ get '/logout' do
   session[:user_id] = nil
   redirect to '/'
 end
+
+post '/tweets/new'
+  Tweet.create(params)
+end
