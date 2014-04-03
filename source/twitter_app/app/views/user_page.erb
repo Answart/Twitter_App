@@ -5,6 +5,7 @@
   <hr>
 
 <%= erb :_create_tweet %>
+
 <h2>Tweets from People I follow</h2>
 <div class="container-sml">
   <% @user.tweets.sort_by{ |tweet| tweet.created_at}.each do |tweet| %>

@@ -15,8 +15,6 @@ end
 
 post '/users/login' do
   @user = User.find_by_email(params[:email])  #add unique constrain to migration
-  p "_______________________________________"
-  p @user
   if @user
      if @user.password == params[:password]
       session[:user_id] = @user.id
@@ -29,6 +27,17 @@ post '/users/login' do
 end
 
 post '/users/new' do
-  User.create(params)
+  @user = User.new(email: params[:email])
+  @user.password = params[:password]
+  @user.save!
   redirect to '/'
+end
+
+get '/logout' do
+  session[:user_id] = nil
+  redirect to '/'
+end
+
+post '/tweets/new' do
+  Tweet.create(params)
 end
