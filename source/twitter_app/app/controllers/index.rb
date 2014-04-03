@@ -1,27 +1,25 @@
-# get '/' do
-#   # Look in app/views/index.erb
-#   erb :index
-# end
 
-# get '/bands' do
-#   @band_names = Band.all.map(&:name)
-#   erb :bands
-# end
+get '/' do
+  if loggedin?
+    erb :user_page #logged in home page
+  else
+    erb :index #login/createaccount page
+end
 
-# post '/bands' do
-#   new_band = Band.create!(name: params[:name])
-#   redirect "/bands/#{new_band.id}"
-# end
+get '/user/:id' do
+  @user = User.find(params[:id])
+  erb :user_profile
+end
 
-# get '/bands/new' do
-#   erb :new_band
-# end
+post 'user/login' do
+  @user = User.find_by_email(email: params[:email])  #add unique constrain to migration
+  if @user
+     if @user.password == params[:password]
+      session[:id] = @user.id
+      erb :user_profile
+    end
+  end
+  redirect to '/'
+end
 
-# get '/bands/:id' do
-#   @band = Band.find(params[:id])
-#   erb :show_band
-# end
 
-# get '/info' do
-#   Demo.new(self).info
-# end
