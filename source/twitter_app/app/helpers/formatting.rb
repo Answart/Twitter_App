@@ -1,5 +1,5 @@
 helpers do
   def loggedin?
-    !!sessions[:id]
+    !!sessions[:user_id]
   end
 end
