@@ -3,6 +3,7 @@ class Tweets < ActiveRecord::Migration
     create_table :tweets do |t|
       t.belongs_to :user
       t.string :message
+      t.integer :tweet_id, default: nil
 
       t.timestamps
     end

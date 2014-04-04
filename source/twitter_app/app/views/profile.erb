@@ -62,7 +62,7 @@
   <div class="bubble">
     <h2><%= @user.user_name %> Tweets</h2>
 
-    <!-- BROKEN!!!! Supposed to be a list of people who follow you -->
+
     <div class="container-sml">
       <% @user.tweets.sort_by{ |tweet| tweet.created_at}.reverse.each do |tweet| %>
       <section class="tweet">
@@ -70,6 +70,8 @@
         <span class="time"> | <%= tweet.created_at.strftime("%H hours and %M minutes ago") %></span>
         <br>
         <%= tweet.message %><br>
+
+        <!-- Retweet button goes here-->
 
       </section>
       <% end %>
