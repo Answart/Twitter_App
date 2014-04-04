@@ -1,0 +1,39 @@
+<!-- SIDEBAR COLUMN -->
+<div id="content" class="side">
+
+  <!-- Show logged in User -->
+  <div class="bubble">
+    <% @logged_in_user = current_user %>
+    <span class="user_name"><%= @logged_in_user.name %></span>
+    <span class="handle">(@<%= @logged_in_user.user_name %>)</span>
+  </div>
+</div><!-- /SIDEBAR COLUMN -->
+
+
+
+<!-- MAIN COLUMN -->
+<div id="content" class="main">
+
+<!-- User can create a new tweet -->
+  <div class="bubble">
+    <%= @user %>
+      <%  if @logged_in_user %>
+        <%= erb :_create_tweet %>
+      <% end %>
+    <hr>
+  </div>
+
+<!-- Tweets from people User is following -->
+  <div class="bubble">
+    <h2>Lil Twitta Users Like "<%= @search_term %>"</h2>
+    <ul>
+      <% @potential_users.each do |user| %>
+        <li><a href="/user/user.id"><%=  user.user_name%></a></li>
+      <% end %>
+    </ul>
+  </div>
+</div><!-- /MAIN COLUMN -->
+
+
+
+
