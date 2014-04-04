@@ -46,9 +46,6 @@ class User < ActiveRecord::Base
   def self.display_followers
     @users_followers = []
     @followers.each do |my_follower|
-      puts "=" * 50
-      p my_follower
-      puts "=" * 50
       @users_followers << User.find(my_follower.follower_id)
     end
     @users_followers
