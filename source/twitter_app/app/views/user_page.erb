@@ -2,8 +2,6 @@
 <div id="content" class="side">
 
   <!-- Show logged in User -->
-
-
   <div class="bubble profile_box">
 
     <% profile_image = @logged_in_user.gravatar_url %>
@@ -14,10 +12,9 @@
     <span class="handle">(@<%= @logged_in_user.user_name %>)</span>
   </div>
 
+  <!-- Search Bar -->
   <div class="bubble float_left" id="search_bar">
     <form action="/search/" method="get">
-
-
       <input id="input" type="text" placeholder="@" name="user_name">
       <input class="bttn-green float_left" type="submit" value="Search">
     </form>
@@ -29,7 +26,7 @@
 <!-- MAIN COLUMN -->
 <div id="content" class="main">
 
-<!-- User can create a new tweet -->
+  <!-- User can create a new tweet -->
   <div class="bubble">
     <%= @user %>
       <%  if @logged_in_user %>
@@ -38,30 +35,25 @@
     <hr>
   </div>
 
-<!-- Tweets from people User is following -->
+  <!-- Tweets from people User is following -->
   <div class="bubble">
     <h2>Tweets from People I follow</h2>
 
     <% @logged_in_user.followed_users.each do |followed_user| %>
-
       <% followed_user.tweets.reverse.each do |tweet|%>
+
       <section class="tweet">
         <a href="/users/<%= tweet.user.id %>">@<%= tweet.user.user_name %></a> | <span class="time"><%= tweet.user.name %></span><br>
         <%= tweet.message %><br>
         <span class="time"><%= tweet.created_at.strftime("%H hours and %M minutes ago") %></span>
 
-       <!-- Retweet button goes here-->
-       <% if @logged_in_user != @user %>
-<span> | <a href="/tweets/<%= tweet.id %>/retweets"><button type="button">Retweet</button></a></span>
+        <!-- Retweet button goes here-->
+        <% if @logged_in_user != @user %>
+          <span> | <a href="/tweets/<%= tweet.id %>/retweets"><button type="button">Retweet</button></a></span>
         <% end %>
-
       </section>
+
       <% end %>
-
     <% end %>
-
-
-
   </div>
-
 </div><!-- /MAIN COLUMN -->

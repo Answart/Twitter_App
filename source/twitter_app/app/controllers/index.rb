@@ -1,7 +1,5 @@
-
 get '/' do
   if current_user
-    # @user = current_user
     erb :user_page #logged in home page
   else
     erb :index #login/createaccount page
@@ -10,24 +8,17 @@ end
 
 post '/users/login' do
   @user = User.find_by_email(params[:email])
-  # p "___________________________________________"
-  # p @user
-  #   p "___________________________________________"
   if @user
    if @user.password == params[:password]
     session[:user_id] = @user.id
     @logged_in_user = current_user
-      # p "Password is correct"
       redirect '/'
     end
-
   end
-  # redirect to '/'
 end
 
 get '/users/:id' do
   @user = User.find(params[:id])
-
   erb :profile
 end
 
@@ -35,20 +26,14 @@ get '/follow/:id' do
   @user = User.all.find(params[:id])
   @logged_in_user = current_user
   @logged_in_user.follow!(@user)
-
-
   redirect "/users/#{@user.id}"
-
 end
 
 get '/unfollow/:id' do
   @user = User.all.find(params[:id])
   @logged_in_user = current_user
   @logged_in_user.unfollow!(@user)
-
-
   redirect "/users/#{@user.id}"
-
 end
 
 post '/users/new' do
@@ -79,11 +64,10 @@ end
 
 
 get "/tweets/:id/retweets" do
-  @logged_in_user = User.find(params[:id])
   @og_tweet = Tweet.find(params[:id])
   @retweet = Tweet.new({
     :message => @og_tweet.message,
-    :user_id => @logged_in_user.id,
+    :user => current_user,
     :retweet_id => @og_tweet.id
     })
   @retweet.save!
