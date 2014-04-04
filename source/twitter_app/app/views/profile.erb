@@ -14,12 +14,7 @@
     <%= erb :_follow_button %>
   </div>
 
-  <div class="bubble float_left" id="search_bar">
-    <form action="/search/" method="get">
-      <input id="input" type="text" placeholder="@" name="user_name">
-      <input class="bttn-green float_left" type="submit" value="Search">
-    </form>
-  </div>
+<%= erb :_search %>
 
 <!-- This User is following: -->
   <div class="bubble profile_box">
@@ -49,12 +44,14 @@
 <div id="content" class="main">
 
 <!-- Creating a tweet if this page belongs to the user -->
-  <div class="bubble">
-    <% if @logged_in_user.id == @user.id %>
+  <% if @logged_in_user.id == @user.id %>
+    <div class="bubble">
+
       <%= erb :_create_tweet %>
       <hr>
-    <% end %>
-  </div>
+
+    </div>
+  <% end %>
 
 
 <!-- This User's tweets-->
@@ -62,11 +59,12 @@
     <h2><%= @user.user_name %> Tweets</h2>
 
     <div class="container-sml">
-      <% @user.tweets.sort_by{ |tweet| tweet.created_at}.reverse.each do |tweet| %>
-        <section class="tweet">
-
-        <a href="/users/<%= tweet.user.id %>">@<%= tweet.user.user_name %></a> | <span class="time"><%= tweet.created_at.strftime("%H hours and %M minutes ago") %></span><br>
-        <%= tweet.message %>
+      <% @user.tweets.sort_by{ |tweet| tweet.created_at}.each do |tweet| %>
+      <section class="tweet">
+        <a href="/users/<%= tweet.user.id %>">@<%= tweet.user.user_name %></a>
+        <span class="time"> | <%= tweet.created_at.strftime("%H hours and %M minutes ago") %></span>
+        <br>
+        <%= tweet.message %><br>
 
         <!-- Retweet button goes here-->
         <% if @logged_in_user != @user %>
