@@ -86,6 +86,7 @@ post "/tweets/:id/retweets/:retweet_id" do
   @og_tweet = Tweet.find(params[:id])
   @retweet = Tweet.new (params message: @og_tweet[:message])
   @retweet[:retweet_id] = @og_tweet[:id]
+  @user = User.find(:tweet_id == @retweet.id)
   @retweet.save!
-
+  redirect "/users/<%= @user.id %>"
 end
