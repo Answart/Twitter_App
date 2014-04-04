@@ -1,6 +1,6 @@
 <div id="create_tweet">
   <form action="/tweets/new" method="post">
-    <textarea rows="5" cols="10" name="message" placeholder="Compose Tweet!"required></textarea><br>
+    <textarea rows="5" cols="10" name="message" placeholder="Compose Tweet!" maxlength="140" required></textarea><br>
     <input type="hidden" name="user_id" value="<%= @logged_in_user.id %>">
     <input class="bttn-green" type="submit" value="Tweet">
     <div class="clearfix"></div>
