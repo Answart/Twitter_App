@@ -34,9 +34,20 @@ class User < ActiveRecord::Base
   def unfollow!(other_user)
     relationships.find_by(followed_id: other_user.id).destroy
   end
-  # def followers
-  #   @followers = Relationship.where('followed_id = ?' self.id)
-  # end
+  def self.followers(user_id)
+    @followers = Relationship.where('followed_id = ?', user_id)
+    # puts "=" * 20
+    # p @followers
+
+    display_followers
+  end
+  def self.display_followers
+    @users_followers = []
+    @followers.each do |my_follower|
+      @users_followers << User.find(my_follower.follower_id)
+    end
+    @users_followers
+  end
 
   # def following
   #   @following = Relationship.where('follower_id = ?' self.id)
