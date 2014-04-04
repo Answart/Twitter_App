@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
   has_many :tweets
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
-  has_many :relationships, foreign_key: "followed_id", dependent: :destroy
   has_many :followed_users, through: :relationships, source: :followed
   has_many :followers, through: :relationships, source: :follower
   include Gravtastic
@@ -42,14 +41,14 @@ class User < ActiveRecord::Base
   end
   def self.followers(user_id)
     @followers = Relationship.where('followed_id = ?', user_id)
-    # puts "=" * 20
-    # p @followers
-
     display_followers
   end
   def self.display_followers
     @users_followers = []
     @followers.each do |my_follower|
+      puts "=" * 50
+      p my_follower
+      puts "=" * 50
       @users_followers << User.find(my_follower.follower_id)
     end
     @users_followers
