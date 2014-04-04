@@ -1,47 +1,74 @@
-<% @logged_in_user = current_user %>
+<!-- SIDEBAR COLUMN -->
+<div id="content" class="side">
 
-  <span class="user_name"><%= @user.name %></span>
-  <span class="handle">(@<%= @user.user_name %>)</span>
-  <hr>
+<!-- This User's Full Name and profile page link -->
+  <div class="bubble">
+    <% @logged_in_user = current_user %>
+  <br>
+    <span class="user_name"><%= @user.name %></span>
+    <span class="handle"><a href="/users/<%= @user.id %>">(@<%= @user.user_name %>)</a></span>
 
-  <% if @logged_in_user.id == @logged_in_user.id %>
-    <%= erb :_create_tweet %>
-  <% end %>
 
-
-  <h2><%= @user.user_name %> Tweets</h2>
-  <% if @user.id != @logged_in_user.id && !@logged_in_user.following?(@user)%>
-    <span><a href="/follow/<%= @user.id %>">Follow</a></span>
+<!-- Follow/Unfollow buttons if visitor is not User -->
+    <% if @user.id != @logged_in_user.id && !@logged_in_user.following?(@user)%>
+    <span><a href="/follow/<%= @user.id %>"><button type="button">Follow</button></a></span>
     <% end %>
+
     <% if @logged_in_user.following?(@user) %>
-    <a href="/unfollow/<%= @user.id %>">Unfollow</a>
+    <span><a href="/unfollow/<%= @user.id %>"><button type="button">Unfollow</button></a></span>
     <% end  %>
+  </div>
 
-    <div>
-      <h3><%= @user.user_name %> is following: </h3>
-      <ol>
-        <% @user.followed_users.each_with_index do |user, index| %>
-        <li><%= user.user_name %></li>
-        <% end %>
-      </ol>
-    </div>
+<!-- This user is following: -->
+  <div class="bubble">
+    <h3><%= @user.user_name %> is following: </h3><hr>
+    <ol>
+      <% @user.followed_users.each_with_index do |user, index| %>
+      <li><a href="/users/<%= user.user_name %>"><%= user.user_name %></a></li>
+      <% end %>
+    </ol>
+  </div>
 
-    <div>
-      <h3><%= @user.user_name %> is followed by: </h3>
-      <ol>
-        <% @user.followers.each_with_index do |user, index| %>
-        <li><%= user.user_name %></li>
-        <% end %>
-      </ol>
-    </div>
 
-  <div class="container-sml">
-    <% @user.tweets.sort_by{ |tweet| tweet.created_at}.each do |tweet| %>
-      <section class="tweet">
-        <a href="/user/<%= tweet.user.id %>"><%= tweet.user.user_name %></a>:
-        <%= tweet.message %><br>
-        <%= tweet.created_at %>
-      </section>
+<!-- This user is being followed by: -->
+  <div class="bubble">
+    <h3><%= @user.user_name %> is followed by: </h3><hr>
+    <ol>
+      <% @user.followers.each_with_index do |user, index| %>
+      <li><a href="/users/<%= user.user_name %>"><%= user.user_name %></a></li>
+      <% end %>
+    </ol>
+  </div>
+</div><!-- /SIDEBAR COLUMN -->
 
+
+<!-- MAIN COLUMN -->
+<div id="content" class="main">
+
+<!-- Creating a tweet if this page belongs to the user -->
+  <div class="bubble">
+    <% if @logged_in_user.id == @user.id %>
+    <%= erb :_create_tweet %>
+    <hr>
     <% end %>
   </div>
+
+
+<!-- This User's tweets-->
+  <div class="bubble">
+    <h2><%= @user.user_name %> Tweets</h2>
+
+    <!-- BROKEN!!!! Supposed to be a list of people who follow you -->
+    <div class="container-sml">
+      <% @user.tweets.sort_by{ |tweet| tweet.created_at}.reverse.each do |tweet| %>
+      <section class="tweet">
+        <a href="/users/<%= tweet.user.id %>">@<%= tweet.user.user_name %></a>
+        <span class="time"> | <%= tweet.created_at.strftime("%H hours and %M minutes ago") %></span>
+        <br>
+        <%= tweet.message %><br>
+
+      </section>
+      <% end %>
+    </div>
+  </div>
+</div>

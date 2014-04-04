@@ -1,16 +1,15 @@
 <div id="header">
-  <h1 id="logo"><a href="/">Lil Twitta!</a></h1>
+  <h1 id="logo" class="top_bar_title"><a href="/">Lil Twitta!</a></h1>
+
   <nav>
     <ul>
       <li><a href="/">Home</a></li>
       <% if current_user %>
         <li><a href="/users/<%= @logged_in_user.id %>">My Profile</a></li>
-
         <li><a href="/logout">Logout</a></li>
-
-    <% end %>
-
+      <% end %>
     </ul>
   </nav>
+
 </div>
 <div class="clearfix"></div>
