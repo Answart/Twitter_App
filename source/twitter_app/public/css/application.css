@@ -1,6 +1,7 @@
 body {
   max-width: 960px;
   background-color: grey;
+  margin: 0 auto;
 }
 
 .container {
