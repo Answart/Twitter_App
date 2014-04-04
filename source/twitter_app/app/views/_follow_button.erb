@@ -1,0 +1,7 @@
+<% if @user.id != @logged_in_user.id && !@logged_in_user.following?(@user)%>
+    <span><a href="/follow/<%= @user.id %>"><button type="button">Follow</button></a></span>
+    <% end %>
+
+    <% if @logged_in_user.following?(@user) %>
+    <span><a href="/unfollow/<%= @user.id %>"><button type="button">Unfollow</button></a></span>
+    <% end  %>
