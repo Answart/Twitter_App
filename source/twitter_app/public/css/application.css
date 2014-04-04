@@ -1,6 +1,6 @@
 body {
   max-width: 960px;
-  background-color: grey;
+  background-color: #ddd;
   margin: 0 auto;
 }
 .clearfix {
@@ -11,7 +11,8 @@ body {
   background-color: white;
   width: 90%;
   padding: 0px 20px 20px 20px;
-  border: 0px dotted black;
+  border: 1px solid #bbb;
+  border-radius: 10px;
 }
 
 textarea {
@@ -31,6 +32,7 @@ th {
 }
 nav li {
   display: inline;
+  margin-right: 10px;
 }
 
 nav ul {

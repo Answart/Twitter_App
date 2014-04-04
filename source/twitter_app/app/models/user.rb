@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   has_many :tweets
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
   has_many :followed_users, through: :relationships, source: :followed
-  # Remember to create a migration!
+  has_many :followers, through: :relationships, source: :follower  # Remember to create a migration!
   include BCrypt
 
   def password

@@ -16,6 +16,25 @@
     <% if @logged_in_user.following?(@user) %>
     <a href="/unfollow/<%= @user.id %>">Unfollow</a>
     <% end  %>
+
+    <div>
+      <h3><%= @user.user_name %> is following: </h3>
+      <ol>
+        <% @user.followed_users.each_with_index do |user, index| %>
+        <li><%= user.user_name %></li>
+        <% end %>
+      </ol>
+    </div>
+
+    <div>
+      <h3><%= @user.user_name %> is followed by: </h3>
+      <ol>
+        <% @user.followers.each_with_index do |user, index| %>
+        <li><%= user.user_name %></li>
+        <% end %>
+      </ol>
+    </div>
+
   <div class="container-sml">
     <% @user.tweets.sort_by{ |tweet| tweet.created_at}.each do |tweet| %>
       <section class="tweet">
