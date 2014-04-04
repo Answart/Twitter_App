@@ -13,15 +13,17 @@
   <% end %>
 
   <h2>Tweets from People I follow</h2>
-    <div class="container-sml">
-      <% @logged_in_user.tweets.sort_by{ |tweet| tweet.created_at}.each do |tweet| %>
+<div class="container-sml">
+<% @logged_in_user.followed_users.each do |followed_user| %>
+        <% followed_user.tweets.each do |tweet|%>
         <section class="tweet">
           <%= tweet.user.user_name %>: <br>
           <%= tweet.message %><br>
           <%= tweet.created_at %>
         </section>
-
+        <% end %>
       <% end %>
+
     </div>
 
 
