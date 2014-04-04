@@ -15,7 +15,6 @@ require 'pg'
 require 'active_record'
 require 'logger'
 require 'bcrypt'
-# require 'gravatar-ultimate'
 
 require 'sinatra'
 require "sinatra/reloader" if development?
