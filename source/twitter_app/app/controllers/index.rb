@@ -41,6 +41,16 @@ get '/follow/:id' do
 
 end
 
+get '/unfollow/:id' do
+  @user = User.all.find(params[:id])
+  @logged_in_user = current_user
+  @logged_in_user.unfollow!(@user)
+
+
+  redirect "/users/#{@user.id}"
+
+end
+
 post '/users/new' do
   @user = User.new(params)
   @user.password = params[:password]
