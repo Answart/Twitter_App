@@ -39,8 +39,14 @@ nav ul {
   float: right;
 }
 
-h1#logo {
+h1#logo a {
   float: left;
+  text-decoration: none;
+  color: black;
+}
+
+#logo a:hover {
+  color: #ccc;
 }
 
 #create_tweet {
