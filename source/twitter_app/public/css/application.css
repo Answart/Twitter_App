@@ -14,6 +14,7 @@ body {
   font-family: Verdana;
   font-size:12px;
   color:#292f33;
+  margin: -17px auto 0 auto;
   /*line-height: 18px;*/
 }
 
@@ -27,7 +28,7 @@ a:visited {
 }
 
 .container {
-  margin: 100px auto;
+  margin: 7% auto;
   min-height: 0px;
   padding: 16px 23px 15px;
   position:relative;
