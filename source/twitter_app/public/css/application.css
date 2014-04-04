@@ -3,7 +3,9 @@ body {
   background-color: grey;
   margin: 0 auto;
 }
-
+.clearfix {
+  clear: both;
+}
 .container {
   margin: 20px auto;
   background-color: white;
@@ -12,14 +14,38 @@ body {
   border: 0px dotted black;
 }
 
+textarea {
+  border-radius: 10px;
+}
 
 .container-sml {
   margin: 20px auto;
   width: 90%;
   padding: 0px 20px 20px 20px;
   border: 1px solid black;
+  border-radius: 10px;
 }
 
 th {
   text-align: left;
+}
+nav li {
+  display: inline;
+}
+
+nav ul {
+  float: right;
+}
+
+h1#logo {
+  float: left;
+}
+
+#create_tweet {
+  margin: 0 auto;
+}
+
+.tweet {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
 }

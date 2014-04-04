@@ -1,8 +1,7 @@
 <% @logged_in_user = current_user %>
-<div class="container">
-  <h1><%= @logged_in_user.name %></h1>
-  <br>
-  <%= @logged_in_user.user_name %>
+
+  <span class="user_name"><%= @logged_in_user.name %></span>
+  <span class="handle">(@<%= @logged_in_user.user_name %>)</span>
   <hr>
 
   <%= @user %>
@@ -17,7 +16,7 @@
 <% @logged_in_user.followed_users.each do |followed_user| %>
         <% followed_user.tweets.each do |tweet|%>
         <section class="tweet">
-          <%= tweet.user.user_name %>: <br>
+          <a href="/user/<%= tweet.user.id %>"><%= tweet.user.user_name %></a>:
           <%= tweet.message %><br>
           <%= tweet.created_at %>
         </section>
@@ -25,6 +24,3 @@
       <% end %>
 
     </div>
-
-
-</div>
