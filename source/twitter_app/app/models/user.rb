@@ -1,8 +1,12 @@
 class User < ActiveRecord::Base
   has_many :tweets
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
+  has_many :relationships, foreign_key: "followed_id", dependent: :destroy
   has_many :followed_users, through: :relationships, source: :followed
   has_many :followers, through: :relationships, source: :follower
+  include Gravtastic
+
+  is_gravtastic!
 
   include BCrypt
 
@@ -23,6 +27,8 @@ class User < ActiveRecord::Base
       return nil
     end
   end
+
+
 
   def following?(other_user)
     relationships.find_by(followed_id: other_user.id)
