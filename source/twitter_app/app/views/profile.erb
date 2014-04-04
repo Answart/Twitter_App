@@ -68,13 +68,17 @@
     <div class="container-sml">
       <% @user.tweets.sort_by{ |tweet| tweet.created_at}.reverse.each do |tweet| %>
       <section class="tweet">
-        <a href="/users/<%= tweet.user.id %>">@<%= tweet.user.user_name %></a>
-        <span class="time"> | <%= tweet.created_at.strftime("%H hours and %M minutes ago") %></span>
-        <br>
-        <%= tweet.message %><br>
+        <a href="/users/<%= tweet.user.id %>">@<%= tweet.user.user_name %></a> |
+        <span class="time"><%= tweet.created_at.strftime("%H hours and %M minutes ago") %></span><br>
+        <%= tweet.message %>
 
-        <!-- Retweet button goes here-->
- <a href="/tweets/:id/retweets/:retweet_id">Retweet</a>
+       <!-- Retweet button goes here-->
+       <% if @logged_in_user != @user %>
+<span><a href="/tweets/<%= tweet.id %>/retweets"><button type="button">Retweet</button></a></span>
+        <% end %>
+
+
+
 
       </section>
       <% end %>

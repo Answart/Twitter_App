@@ -78,15 +78,14 @@ get '/search/*' do
 end
 
 
-# get "/:tweet_id/new" do
-
-# end
-
-post "/tweets/:id/retweets/:retweet_id" do
+get "/tweets/:id/retweets" do
+  @logged_in_user = User.find(params[:id])
   @og_tweet = Tweet.find(params[:id])
-  @retweet = Tweet.new (params message: @og_tweet[:message])
-  @retweet[:retweet_id] = @og_tweet[:id]
-  @user = User.find(:tweet_id == @retweet.id)
+  @retweet = Tweet.new({
+    :message => @og_tweet.message,
+    :user_id => @logged_in_user.id,
+    :retweet_id => @og_tweet.id
+    })
   @retweet.save!
-  redirect "/users/<%= @user.id %>"
+  redirect "/"
 end
