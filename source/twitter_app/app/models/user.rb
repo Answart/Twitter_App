@@ -49,7 +49,4 @@ class User < ActiveRecord::Base
     @users_followers
   end
 
-  # def following
-  #   @following = Relationship.where('follower_id = ?' self.id)
-  # end
 end

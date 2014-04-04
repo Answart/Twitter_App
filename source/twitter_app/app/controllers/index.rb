@@ -68,3 +68,12 @@ post '/tweets/new' do
   Tweet.create(params)
   redirect '/'
 end
+
+get '/search/*' do
+  user_name = "%" + params[:user_name] + "%"
+  @potential_users = User.where('user_name like ?', user_name )
+  puts "potential_users"
+  p @potential_users
+puts "potential_users"
+  erb :search
+end
