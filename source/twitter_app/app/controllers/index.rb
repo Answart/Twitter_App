@@ -70,10 +70,9 @@ post '/tweets/new' do
 end
 
 get '/search/*' do
+  @search_term = params[:user_name]
   user_name = "%" + params[:user_name] + "%"
   @potential_users = User.where('user_name like ?', user_name )
-  puts "potential_users"
-  p @potential_users
-puts "potential_users"
+  p @search_term
   erb :search
 end
