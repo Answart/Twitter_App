@@ -3,11 +3,12 @@
 
   <!-- Show logged in User -->
 
-  <div class="profile_image">
+
+  <div class="bubble">
+    <div class="profile_image">
     <% profile_image = @logged_in_user.gravatar_url %>
     <img src="<%= profile_image %>">
   </div>
-  <div class="bubble">
     <% @logged_in_user = current_user %>
     <span class="user_name"><%= @logged_in_user.name %></span>
     <span class="handle">(@<%= @logged_in_user.user_name %>)</span>
