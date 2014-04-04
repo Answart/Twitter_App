@@ -63,7 +63,7 @@
 
 
     <div class="container-sml">
-      <% @user.tweets.sort_by{ |tweet| tweet.created_at}.reverse.each do |tweet| %>
+      <% @user.tweets.sort_by{ |tweet| tweet.created_at}.each do |tweet| %>
       <section class="tweet">
         <a href="/users/<%= tweet.user.id %>">@<%= tweet.user.user_name %></a>
         <span class="time"> | <%= tweet.created_at.strftime("%H hours and %M minutes ago") %></span>
