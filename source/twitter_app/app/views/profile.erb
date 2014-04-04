@@ -11,6 +11,12 @@
 
 
   <h2><%= @user.user_name %> Tweets</h2>
+  <% if @user.id != @logged_in_user.id && !@logged_in_user.following?(@user)%>
+    <span><a href="/follow/<%= @user.id %>">Follow</a></span>
+    <% end %>
+    <% if @logged_in_user.following?(@user) %>
+    <a href="/unfollow/<%= @user.id %>">Unfollow</a>
+    <% end  %>
   <div class="container-sml">
     <% @user.tweets.sort_by{ |tweet| tweet.created_at}.each do |tweet| %>
       <section class="tweet">

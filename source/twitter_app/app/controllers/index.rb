@@ -31,7 +31,15 @@ get '/users/:id' do
   erb :profile
 end
 
+get '/follow/:id' do
+  @user = User.all.find(params[:id])
+  @logged_in_user = current_user
+  @logged_in_user.follow!(@user)
 
+
+  redirect "/users/#{@user.id}"
+
+end
 
 post '/users/new' do
   @user = User.new(params)
