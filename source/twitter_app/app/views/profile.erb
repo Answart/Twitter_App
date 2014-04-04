@@ -1,0 +1,27 @@
+<% @logged_in_user = current_user %>
+<div class="container">
+  <h1><%= @user.name %></h1>
+  <br>
+  <%= @user.user_name %>
+  <hr>
+
+  <% if @logged_in_user.id == @logged_in_user.id %>
+    <%= erb :_create_tweet %>
+  <% end %>
+
+
+  <h2><%= @user.user_name %> Tweets</h2>
+  <div class="container-sml">
+    <% @user.tweets.sort_by{ |tweet| tweet.created_at}.each do |tweet| %>
+      <section class="tweet">
+        <%= tweet.user.user_name %>: <br>
+        <%= tweet.message %><br>
+        <%= tweet.created_at %>
+      </section>
+
+    <% end %>
+  </div>
+
+
+
+</div>

@@ -1,22 +1,28 @@
+<% @logged_in_user = current_user %>
 <div class="container">
-  <h1><%= @user.name %></h1>
+  <h1><%= @logged_in_user.name %></h1>
   <br>
-  <%= @user.user_name %>
+  <%= @logged_in_user.user_name %>
   <hr>
 
-<%= erb :_create_tweet %>
+  <%= @user %>
+  <%  if @logged_in_user %>
 
-<h2>Tweets from People I follow</h2>
-<div class="container-sml">
-  <% @user.tweets.sort_by{ |tweet| tweet.created_at}.each do |tweet| %>
-    <section class="tweet">
-      <%= tweet.user.user_name %>: <br>
-      <%= tweet.message %><br>
-      <%= tweet.created_at %>
-    </section>
+    <%= erb :_create_tweet %>
 
-  <% end %>  <!-- tweets of users Main User is following -->
-</div>
+  <% end %>
+
+  <h2>Tweets from People I follow</h2>
+    <div class="container-sml">
+      <% @logged_in_user.tweets.sort_by{ |tweet| tweet.created_at}.each do |tweet| %>
+        <section class="tweet">
+          <%= tweet.user.user_name %>: <br>
+          <%= tweet.message %><br>
+          <%= tweet.created_at %>
+        </section>
+
+      <% end %>
+    </div>
 
 
 </div>
