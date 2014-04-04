@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   has_many :tweets
-  # Remember to create a migration!
+  has_many :relationships, foreign_key: "follower_id", dependent: :destroy
+  has_many :followed_users, through: :relationships, source: :followed
+  has_many :followers, through: :relationships, source: :follower  # Remember to create a migration!
   include BCrypt
 
   def password
@@ -21,6 +23,16 @@ class User < ActiveRecord::Base
     end
   end
 
+  def following?(other_user)
+    relationships.find_by(followed_id: other_user.id)
+  end
+
+  def follow!(other_user)
+    relationships.create!(followed_id: other_user.id)
+  end
+  def unfollow!(other_user)
+    relationships.find_by(followed_id: other_user.id).destroy
+  end
   # def followers
   #   @followers = Relationship.where('followed_id = ?' self.id)
   # end

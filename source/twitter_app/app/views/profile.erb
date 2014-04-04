@@ -1,0 +1,47 @@
+<% @logged_in_user = current_user %>
+
+  <span class="user_name"><%= @user.name %></span>
+  <span class="handle">(@<%= @user.user_name %>)</span>
+  <hr>
+
+  <% if @logged_in_user.id == @logged_in_user.id %>
+    <%= erb :_create_tweet %>
+  <% end %>
+
+
+  <h2><%= @user.user_name %> Tweets</h2>
+  <% if @user.id != @logged_in_user.id && !@logged_in_user.following?(@user)%>
+    <span><a href="/follow/<%= @user.id %>">Follow</a></span>
+    <% end %>
+    <% if @logged_in_user.following?(@user) %>
+    <a href="/unfollow/<%= @user.id %>">Unfollow</a>
+    <% end  %>
+
+    <div>
+      <h3><%= @user.user_name %> is following: </h3>
+      <ol>
+        <% @user.followed_users.each_with_index do |user, index| %>
+        <li><%= user.user_name %></li>
+        <% end %>
+      </ol>
+    </div>
+
+    <div>
+      <h3><%= @user.user_name %> is followed by: </h3>
+      <ol>
+        <% @user.followers.each_with_index do |user, index| %>
+        <li><%= user.user_name %></li>
+        <% end %>
+      </ol>
+    </div>
+
+  <div class="container-sml">
+    <% @user.tweets.sort_by{ |tweet| tweet.created_at}.each do |tweet| %>
+      <section class="tweet">
+        <a href="/user/<%= tweet.user.id %>"><%= tweet.user.user_name %></a>:
+        <%= tweet.message %><br>
+        <%= tweet.created_at %>
+      </section>
+
+    <% end %>
+  </div>

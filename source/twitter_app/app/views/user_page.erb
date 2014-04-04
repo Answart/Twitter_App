@@ -1,22 +1,26 @@
-<div class="container">
-  <h1><%= @user.name %></h1>
-  <br>
-  <%= @user.user_name %>
+<% @logged_in_user = current_user %>
+
+  <span class="user_name"><%= @logged_in_user.name %></span>
+  <span class="handle">(@<%= @logged_in_user.user_name %>)</span>
   <hr>
 
-<%= erb :_create_tweet %>
+  <%= @user %>
+  <%  if @logged_in_user %>
 
-<h2>Tweets from People I follow</h2>
+    <%= erb :_create_tweet %>
+
+  <% end %>
+
+  <h2>Tweets from People I follow</h2>
 <div class="container-sml">
-  <% @user.tweets.sort_by{ |tweet| tweet.created_at}.each do |tweet| %>
-    <section class="tweet">
-      <%= tweet.user.user_name %>: <br>
-      <%= tweet.message %><br>
-      <%= tweet.created_at %>
-    </section>
+<% @logged_in_user.followed_users.each do |followed_user| %>
+        <% followed_user.tweets.each do |tweet|%>
+        <section class="tweet">
+          <a href="/user/<%= tweet.user.id %>"><%= tweet.user.user_name %></a>:
+          <%= tweet.message %><br>
+          <%= tweet.created_at %>
+        </section>
+        <% end %>
+      <% end %>
 
-  <% end %>  <!-- tweets of users Main User is following -->
-</div>
-
-
-</div>
+    </div>
