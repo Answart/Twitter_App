@@ -14,11 +14,11 @@ post '/users/login' do
   # p @user
   #   p "___________________________________________"
   if @user
-     if @user.password == params[:password]
-      session[:user_id] = @user.id
-      @logged_in_user = current_user
+   if @user.password == params[:password]
+    session[:user_id] = @user.id
+    @logged_in_user = current_user
       # p "Password is correct"
-     redirect '/'
+      redirect '/'
     end
 
   end
@@ -55,6 +55,7 @@ post '/users/new' do
   @user = User.new(params)
   @user.password = params[:password]
   @user.save!
+  session[:user_id] = @user.id
   redirect to '/'
 end
 

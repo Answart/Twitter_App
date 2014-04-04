@@ -1,26 +1,40 @@
-<% @logged_in_user = current_user %>
+<!-- SIDEBAR COLUMN -->
+<div id="content" class="side">
 
-  <span class="user_name"><%= @logged_in_user.name %></span>
-  <span class="handle">(@<%= @logged_in_user.user_name %>)</span>
-  <hr>
+  <!-- Show logged in User -->
+  <div class="bubble">
+    <% @logged_in_user = current_user %>
+    <span class="user_name"><%= @logged_in_user.name %></span>
+    <span class="handle">(@<%= @logged_in_user.user_name %>)</span>
+  </div>
+</div><!-- /SIDEBAR COLUMN -->
 
-  <%= @user %>
-  <%  if @logged_in_user %>
 
-    <%= erb :_create_tweet %>
 
-  <% end %>
+<!-- MAIN COLUMN -->
+<div id="content" class="main">
 
-  <h2>Tweets from People I follow</h2>
-<div class="container-sml">
-<% @logged_in_user.followed_users.each do |followed_user| %>
-        <% followed_user.tweets.each do |tweet|%>
-        <section class="tweet">
-          <a href="/user/<%= tweet.user.id %>"><%= tweet.user.user_name %></a>:
-          <%= tweet.message %><br>
-          <%= tweet.created_at %>
-        </section>
-        <% end %>
+<!-- User can create a new tweet -->
+  <div class="bubble">
+    <%= @user %>
+      <%  if @logged_in_user %>
+        <%= erb :_create_tweet %>
       <% end %>
+    <hr>
+  </div>
 
-    </div>
+<!-- Tweets from people User is following -->
+  <div class="bubble">
+    <h2>Tweets from People I follow</h2>
+    <% @logged_in_user.followed_users.each do |followed_user| %>
+      <% followed_user.tweets.each do |tweet|%>
+      <section class="tweet">
+        <a href="/users/<%= tweet.user.id %>"><%= tweet.user.user_name %></a>
+        <span class="time"> | <%= tweet.created_at.strftime("%H hours and %M minutes ago") %></span>
+        <%= tweet.message %><br>
+      </section>
+      <% end %>
+    <% end %>
+  </div>
+
+</div><!-- /MAIN COLUMN -->
