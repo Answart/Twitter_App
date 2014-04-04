@@ -1,14 +1,11 @@
 <!-- SIDEBAR COLUMN -->
 <div id="content" class="side">
 
+
 <!-- This User's Full Name and profile page link -->
-
-
   <div class="bubble profile_box">
-
     <% profile_image = @user.gravatar_url %>
-      <img id="profile_image" src="<%= profile_image %>">
-
+    <img id="profile_image" src="<%= profile_image %>">
     <% @logged_in_user = current_user %>
     <span class="user_name"><%= @user.name %></span>
     <span class="handle">(@<%= @user.user_name %>)</span>
@@ -19,9 +16,9 @@
 
 <%= erb :_search %>
 
-<!-- This user is following: -->
+<!-- This User is following: -->
   <div class="bubble profile_box">
-    <h3><%= @user.user_name %> is following: </h3><hr>
+    <h3><%= @user.user_name %> is following:</h3><hr>
     <ol>
       <% @user.followed_users.each_with_index do |user, index| %>
       <li><a href="/users/<%= user.id %>"><%= user.user_name %></a></li>
@@ -61,7 +58,6 @@
   <div class="bubble">
     <h2><%= @user.user_name %> Tweets</h2>
 
-
     <div class="container-sml">
       <% @user.tweets.sort_by{ |tweet| tweet.created_at}.each do |tweet| %>
       <section class="tweet">
@@ -71,6 +67,9 @@
         <%= tweet.message %><br>
 
         <!-- Retweet button goes here-->
+        <% if @logged_in_user != @user %>
+          <span><a href="/tweets/<%= tweet.id %>/retweets"><button type="button">Retweet</button></a></span>
+        <% end %>
 
       </section>
       <% end %>
