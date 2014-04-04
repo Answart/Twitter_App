@@ -3,7 +3,8 @@
 
 <!-- This User's Full Name and profile page link -->
   <div class="profile_image">
-
+    <% profile_image = @user.gravatar_url %>
+    <img src="<%= profile_image %>">
   </div>
 
   <div class="bubble">
@@ -11,6 +12,7 @@
   <br>
     <span class="user_name"><%= @user.name %></span>
     <span class="handle"><a href="/users/<%= @user.id %>">(@<%= @user.user_name %>)</a></span>
+
 
 <!-- Follow/Unfollow buttons if visitor is not User -->
     <% if @user.id != @logged_in_user.id && !@logged_in_user.following?(@user)%>
