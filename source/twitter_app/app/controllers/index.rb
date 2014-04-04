@@ -76,3 +76,15 @@ get '/search/*' do
   p @search_term
   erb :search
 end
+
+
+# get "/:tweet_id/new" do
+
+# end
+
+post "/tweets/:id/retweets/:retweet_id" do
+  @og_tweet = Tweet.find(params[:id])
+  @retweet = Tweet.new (params message: @og_tweet[:message])
+  @retweet[:retweet_id] = @og_tweet[:id]
+  @retweet.save!
+end
