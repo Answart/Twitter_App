@@ -2,10 +2,11 @@
   overflow-y: scroll;
 }*/
 
+
 body {
   margin-top: -17px;
   padding-top:0px;
-  max-width: 2060px;
+  max-width: 960px;
   height: 900px;
   background-image: url('http://i.imgur.com/80OfyPD.png');
   background-repeat:repeat;
@@ -30,7 +31,7 @@ a:visited {
   min-height: 0px;
   padding: 16px 23px 15px;
   position:relative;
-  width: 890px;
+  width: 100%;
   background-color:transparent;
 }
 /*.container {
@@ -56,11 +57,12 @@ a:visited {
   /*padding: 15px;*/
   float: left;
   /*margin: 20px auto;*/
-  width: 290px;
+  width: 33%;
+
 }
 
 .main {
-  width: 500px;
+  width: 58%;
   float: right;
 }
 
@@ -70,6 +72,10 @@ a:visited {
   border: 1px solid white;
   border-radius: 10px;
   margin-bottom: 20px;
+}
+
+.side .bubble {
+  width: 90%;
 }
 
 .clearfix {
@@ -100,6 +106,16 @@ textarea {
 th {
   text-align: left;
 }
+
+.float_left {
+  float: left;
+}
+
+/*  NAVIGATION   */
+.main_nav {
+  display: inline;
+}
+
 nav li {
   display: inline;
   margin-right: 10px;
@@ -107,6 +123,30 @@ nav li {
 
 nav ul {
   float: right;
+
+}
+
+#search_bar {
+
+  display: inline;
+
+}
+
+#search_form {
+  float: right;
+  display: inline;
+  width: 10%;
+}
+
+#search_bar input#input {
+  float: left;
+  display: inline;
+  width: 45%;
+}
+
+#search_bar label {
+  float: left;
+  display: inline;
 }
 
 h1#logo a {
@@ -215,3 +255,16 @@ input, textarea, select {
 
   /*float: right;*/
 }
+
+.profile_box {
+  float: left;
+}
+
+
+#profile_image {
+  float: left;
+  border-radius: 10px;
+  margin-right: 5px;
+  margin-top: 5px;
+}
+
