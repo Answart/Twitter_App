@@ -6,6 +6,8 @@ class Relationships < ActiveRecord::Migration
 
       t.timestamps
     end
+    # indexes are for optimization of database queries. They probably weren't
+    # necessary here.
     add_index :relationships, :follower_id
     add_index :relationships, :followed_id
     add_index :relationships, [:follower_id, :followed_id], unique: true

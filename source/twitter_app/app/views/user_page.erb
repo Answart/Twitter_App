@@ -1,4 +1,4 @@
-<!-- SIDEBAR COLUMN -->
+SIDEBAR COLUMN -->
 <div id="content" class="side">
 
   <!-- Show logged in User -->
@@ -25,7 +25,8 @@
   <div class="bubble">
     <%= @user %>
       <%  if @logged_in_user %>
-        <%= erb :_create_tweet %>
+      <!-- nice use of partials and locals. really DRYs up your views! -->
+        <%= erb :_create_tweet, {user: @logged_in_user} %>
       <% end %>
     <hr>
   </div>
@@ -34,6 +35,8 @@
   <div class="bubble">
     <h2>Tweets from People I follow</h2>
 
+    <!-- waaaaay too much logic for the view. Do this in the controller or model, and -->
+    <!-- then send a simple collection over to the view! -->
     <% @logged_in_user.followed_users.each do |followed_user| %>
       <% followed_user.tweets.reverse.each do |tweet|%>
 
@@ -51,4 +54,4 @@
       <% end %>
     <% end %>
   </div>
-</div><!-- /MAIN COLUMN -->
+</div><!-- /MAIN COLUMN
