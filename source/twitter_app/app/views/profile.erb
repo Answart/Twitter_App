@@ -20,6 +20,7 @@
   <div class="bubble profile_box">
     <h3><%= @user.user_name %> is following:</h3><hr>
     <ol>
+      <!-- you don't need an index value here.  -->
       <% @user.followed_users.each_with_index do |user, index| %>
       <li><a href="/users/<%= user.id %>"><%= user.user_name %></a></li>
       <% end %>
@@ -59,6 +60,7 @@
     <h2><%= @user.user_name %> Tweets</h2>
 
     <div class="container-sml">
+      <!-- too much logic! you can handle this all in the model or controller. -->
       <% @user.tweets.sort_by{ |tweet| tweet.created_at}.each do |tweet| %>
       <section class="tweet">
         <a href="/users/<%= tweet.user.id %>">@<%= tweet.user.user_name %></a>

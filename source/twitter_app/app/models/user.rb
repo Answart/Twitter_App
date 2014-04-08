@@ -28,7 +28,8 @@ class User < ActiveRecord::Base
   end
 
 
-
+  # very cool. You can do much of this through the AR query interface, but
+  # I'm always a fan of people writing their own helper methods. Well done!
   def following?(other_user)
     relationships.find_by(followed_id: other_user.id)
   end
@@ -46,6 +47,7 @@ class User < ActiveRecord::Base
   def self.display_followers
     @users_followers = []
     @followers.each do |my_follower|
+      # no puts in production.
       puts "=" * 50
       p my_follower
       puts "=" * 50
